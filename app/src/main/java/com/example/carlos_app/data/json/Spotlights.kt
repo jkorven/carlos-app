@@ -1,0 +1,66 @@
+package com.example.carlos_app.data.json
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.Role.Companion.Image
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.toUpperCase
+import androidx.compose.ui.unit.dp
+import java.util.Locale
+import java.util.Objects
+
+class Spotlights() {
+    val spotlight1 = Entry("Chicken", "http://www.carlos.com","", "Text")
+    val spotlight2 = Entry("Beef", "http://www.carlos.com", "", "Text")
+    val spotlight3 = Entry("Pork", "http://www.carlos.com", "", "Text")
+    val spotlight4 = Entry("Fish", "http://www.carlos.com", "", "Text")
+    val spotlight5 = Entry("Vegan", "http://www.carlos.com", "", "Text")
+    val splotlights = listOf(spotlight1, spotlight2, spotlight3, spotlight4, spotlight5)
+}
+
+class Entry(title: String, imageUrl: String, backgroundUrl: String, description: String) {
+    val title = title
+    val image = imageUrl
+    val description = description
+    val background = backgroundUrl
+}
+
+@Composable
+fun Spotlight(title: String, imageUrl: String, description: String) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(Color.Magenta)
+            .height(200.dp)
+    ) {
+
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Red)
+                .height(160.dp)
+        ) {
+            Text(
+                text = title.uppercase(),
+                fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
+    }
+}
+
+
