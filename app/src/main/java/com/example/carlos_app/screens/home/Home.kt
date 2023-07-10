@@ -103,6 +103,7 @@ fun HomeScreen() {
                 items(len) {
                     val currentSpotlight = spotlights[it]
                     Spotlight(
+                        id = it + 1,
                         title = currentSpotlight.title,
                         imageUrl = currentSpotlight.image,
                         description = currentSpotlight.description

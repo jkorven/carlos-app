@@ -20,11 +20,33 @@ import java.util.Locale
 import java.util.Objects
 
 class Spotlights() {
-    val spotlight1 = Entry("Chicken", "http://www.carlos.com","", "Text")
-    val spotlight2 = Entry("Beef", "http://www.carlos.com", "", "Text")
-    val spotlight3 = Entry("Pork", "http://www.carlos.com", "", "Text")
-    val spotlight4 = Entry("Fish", "http://www.carlos.com", "", "Text")
-    val spotlight5 = Entry("Vegan", "http://www.carlos.com", "", description = "Text")
+    val spotlight1 = Entry(
+        "Chicken",
+        "https://cdn-assets.greatplainsmfg.com/ag_files/styles/scale_crop_500px/public/product-studio-image/bd7600-studio.png",
+        "",
+        "Text"
+    )
+    val spotlight2 = Entry(
+        "Beef",
+        "https://cdn-assets.greatplainsmfg.com/ag_files/styles/scale_crop_500px/public/product-studio-image/bd7600-studio.png",
+        "",
+        "Text"
+    )
+    val spotlight3 = Entry("Pork",
+        "https://cdn-assets.greatplainsmfg.com/ag_files/styles/scale_crop_500px/public/product-studio-image/bd7600-studio.png",
+        "",
+        "Text"
+    )
+    val spotlight4 = Entry("Fish",
+        "https://cdn-assets.greatplainsmfg.com/ag_files/styles/scale_crop_500px/public/product-studio-image/bd7600-studio.png",
+        "",
+        "Text"
+    )
+    val spotlight5 = Entry("Vegan",
+        "https://cdn-assets.greatplainsmfg.com/ag_files/styles/scale_crop_500px/public/product-studio-image/bd7600-studio.png",
+        "",
+        description = "Text"
+    )
     val splotlights = listOf(spotlight1, spotlight2, spotlight3, spotlight4, spotlight5)
 }
 
