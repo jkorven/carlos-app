@@ -4,8 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.carlos_app.screens.AccountScreen
-import com.example.carlos_app.screens.HomeScreen
+import com.example.carlos_app.screens.account.AccountScreen
+import com.example.carlos_app.screens.home.HomeScreen
 import com.example.carlos_app.screens.MenuScreen
 import com.example.carlos_app.screens.OrderScreen
 

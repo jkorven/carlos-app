@@ -1,4 +1,4 @@
-package com.example.carlos_app.screens
+package com.example.carlos_app.screens.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -24,7 +24,7 @@ class Spotlights() {
     val spotlight2 = Entry("Beef", "http://www.carlos.com", "", "Text")
     val spotlight3 = Entry("Pork", "http://www.carlos.com", "", "Text")
     val spotlight4 = Entry("Fish", "http://www.carlos.com", "", "Text")
-    val spotlight5 = Entry("Vegan", "http://www.carlos.com", "", "Text")
+    val spotlight5 = Entry("Vegan", "http://www.carlos.com", "", description = "Text")
     val splotlights = listOf(spotlight1, spotlight2, spotlight3, spotlight4, spotlight5)
 }
 
@@ -33,34 +33,6 @@ class Entry(title: String, imageUrl: String, backgroundUrl: String, description:
     val image = imageUrl
     val description = description
     val background = backgroundUrl
-}
-
-@Composable
-fun Spotlight(title: String, imageUrl: String, description: String) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.Magenta)
-            .height(200.dp)
-    ) {
-
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Red)
-                .height(160.dp)
-        ) {
-            Text(
-                text = title.uppercase(),
-                fontSize = MaterialTheme.typography.titleMedium.fontSize,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
-            )
-        }
-
-    }
 }
 
 
