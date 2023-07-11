@@ -5,26 +5,40 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +46,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.carlos_app.R
 import com.example.carlos_app.data.json.Spotlights
 import com.example.carlos_app.screens.home.components.Spotlight
@@ -42,7 +57,6 @@ fun HomeScreen() {
         modifier = Modifier
             .fillMaxSize()
     ) {
-//        // Background image
         Image(
             modifier = Modifier
                 .fillMaxSize(),
@@ -52,67 +66,152 @@ fun HomeScreen() {
         )
         Box(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .fillMaxSize()
-                .background(Color.Transparent)
+                .fillMaxWidth()
+                .height(380.dp)
         ) {
-            // Title box
+            AsyncImage(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
+                    .drawWithContent {
+                        val colors = listOf(
+                            Color.Black,
+                            Color.Transparent
+                        )
+                        drawContent()
+                        drawRect(
+                            brush = Brush.verticalGradient(
+                                colors = colors,
+                                startY = 850f,
+                                endY = Float.POSITIVE_INFINITY
+                            ),
+                            blendMode = BlendMode.DstIn
+                        )
+                    },
+                model = "https://carlosokellys.com/images/banners_frontpage/ChickenCrop.jpg",
+                contentDescription = null,
+                contentScale = ContentScale.Crop
+            )
             Box(
-                contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Transparent)
-                    .height(100.dp)
+                    .height(70.dp)
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(Color.Black.copy(alpha = 0.8f), Color.Transparent)
+                        )
+                    ),
+                contentAlignment = Alignment.Center
+
             ) {
-                Column (
+                Image(
                     modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                    //Title
-                    Text(
-                        text = "Carlos O'Kelly's",
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.Black,
-                        color = Color.White,
-                        fontFamily = FontFamily.Monospace,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    )
-                    //Subtitle
-                    Text(
-                        text = "Inspired Mex",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.White,
-                        fontFamily = FontFamily.Cursive,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    )
-                }
+                        .width(80.dp)
+                        .padding(vertical = 15.dp),
+                    painter = painterResource(R.drawable.title_with_logo),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillBounds
+                )
             }
+        }
+        Box (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 380.dp)
+                .background(Color.Transparent),
+            contentAlignment = Alignment.Center
+        ) {
+
             LazyColumn(
                 modifier = Modifier
-                    .padding(PaddingValues(top = 100.dp))
+                    .fillMaxWidth(),
+                contentPadding = PaddingValues(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                //Spotlight items
-                val spotlights = Spotlights().splotlights
-                val len = spotlights.size
-                // Creates a Spotlight for each item in list
-                items(len) {
-                    val currentSpotlight = spotlights[it]
-                    Spotlight(
-                        id = it + 1,
-                        title = currentSpotlight.title,
-                        imageUrl = currentSpotlight.image,
-                        description = currentSpotlight.description
-                    )
-                    Spacer(modifier = Modifier.size(16.dp))
+                item {
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp)
+                            .padding(vertical = 20.dp),
+                        onClick = {
+                            //your onclick code here
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
+                        shape = RoundedCornerShape(5.dp),
+                        elevation =  ButtonDefaults.buttonElevation(
+                            defaultElevation = 10.dp,
+                            pressedElevation = 15.dp,
+                            disabledElevation = 0.dp
+                        ),
+
+                        ) {
+                        Text(
+                            text = "Delivery & Pickup",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                }
+                item {
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp)
+                            .padding(vertical = 20.dp),
+                        onClick = {
+                            //your onclick code here
+                        },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                        shape = RoundedCornerShape(5.dp),
+                        elevation =  ButtonDefaults.buttonElevation(
+                            defaultElevation = 10.dp,
+                            pressedElevation = 15.dp,
+                            disabledElevation = 0.dp
+                        ),
+
+                        ) {
+                        Text(
+                            text = "Nearest Location",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Red
+                        )
+                    }
                 }
             }
-
         }
+        // Sticker
+//        Box(
+//            modifier = Modifier
+//                .padding(top = 280.dp, start = 40.dp)
+//                .height(120.dp)
+//                .width(120.dp)
+//                .background(Color.Transparent),
+//            contentAlignment = Alignment.Center
+//        ) {
+//            Image(
+//                painter = painterResource(R.drawable.sticker_20pt),
+//                contentDescription = null,
+//                contentScale = ContentScale.FillBounds
+//            )
+//            Row(
+//                modifier = Modifier
+//                    .rotate(-20f)
+//                    .padding(horizontal = 15.dp),
+//            ){
+//                Text(
+//                    text = "Always Served Sizzlin' Hot!",
+//                    fontSize = 16.sp,
+//                    textAlign = TextAlign.Center,
+//                    color = Color.White,
+//                    fontWeight = FontWeight.Bold,
+//                    lineHeight = 18.sp
+//                )
+//            }
+//
+//        }
     }
 }
 

@@ -22,7 +22,7 @@ import java.util.Objects
 class Spotlights() {
     val spotlight1 = Entry(
         "Chicken",
-        "https://cdn-assets.greatplainsmfg.com/ag_files/styles/scale_crop_500px/public/product-studio-image/bd7600-studio.png",
+        "https://carlosokellys.com/images/banners_frontpage/ChickenCrop.jpg",
         "",
         "Text"
     )
