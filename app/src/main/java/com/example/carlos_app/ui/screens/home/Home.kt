@@ -1,5 +1,6 @@
-package com.example.carlos_app.screens.home
+package com.example.carlos_app.ui.screens.home
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -7,6 +8,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -25,6 +27,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
@@ -36,6 +42,7 @@ import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.TextStyle
@@ -43,19 +50,30 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewModelScope
 import coil.compose.AsyncImage
 import com.example.carlos_app.R
 import com.example.carlos_app.data.json.Spotlights
-import com.example.carlos_app.screens.home.components.Spotlight
+import com.example.carlos_app.ui.screens.home.components.Spotlight
 
+@SuppressLint("RememberReturnType")
 @Composable
 fun HomeScreen() {
-    Box(
+    var viewModel: HomeViewModel = HomeViewModel()
+    HomeContent(viewModel = viewModel)
+}
+@Composable
+fun HomeContent(viewModel: HomeViewModel) {
+    BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
+            .onGloballyPositioned {
+                viewModel.setSize(it.size)
+            }
     ) {
         Image(
             modifier = Modifier
@@ -82,7 +100,7 @@ fun HomeScreen() {
                         drawRect(
                             brush = Brush.verticalGradient(
                                 colors = colors,
-                                startY = 850f,
+                                startY = viewModel.state.value.size.height * 0.47f,
                                 endY = Float.POSITIVE_INFINITY
                             ),
                             blendMode = BlendMode.DstIn

@@ -1,4 +1,4 @@
-package com.example.carlos_app.screens
+package com.example.carlos_app.ui.screens
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -20,21 +20,19 @@ import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
 import com.example.carlos_app.ui.theme.CarlosappTheme
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+//        setTheme(R.style.Theme_Carlosapp)
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             CarlosappTheme {
-                MainScreen()
+                CarlosApp()
             }
         }
     }
-}
-
-class DataLoader {
-
 }

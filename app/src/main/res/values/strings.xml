@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">carlos-app</string>
+
+    <string name="screens_home">Home</string>
+    <string name="screens_menuAndOrder">Menu &amp; Order</string>
+    <string name="screens_locations">Locations</string>
+    <string name="screens_account">Account</string>
+
+    <string name="unexpected_error">An unexpected error occurred.\nPlease try again.</string>
 </resources>

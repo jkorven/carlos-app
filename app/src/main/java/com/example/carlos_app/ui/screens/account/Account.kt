@@ -1,4 +1,4 @@
-package com.example.carlos_app.screens
+package com.example.carlos_app.ui.screens.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -12,18 +12,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 
 @Composable
-fun OrderScreen() {
+fun AccountScreen() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Blue)
+            .background(Color.Cyan)
     ) {
         Text(
-            text = "ORDER",
+            text = "ACCOUNT",
             fontSize = MaterialTheme.typography.titleMedium.fontSize,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = Color.White,
         )
     }
 }

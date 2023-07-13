@@ -1,4 +1,4 @@
-package com.example.carlos_app.screens.home.components
+package com.example.carlos_app.ui.screens.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
