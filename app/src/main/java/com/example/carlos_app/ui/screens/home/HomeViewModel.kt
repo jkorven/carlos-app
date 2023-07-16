@@ -16,17 +16,12 @@ import kotlinx.coroutines.launch
 
 // https://proandroiddev.com/how-to-handle-viewmodel-one-time-events-in-jetpack-compose-a01af0678b76
 
-class HomeViewModel(): ViewModel() {
-    private val _state = MutableSharedFlow<UiEvent>()
-    val state: SharedFlow<UiEvent> = _state.asSharedFlow()
+class HomeViewModel: ViewModel() {
+    private val _state = MutableStateFlow(HomeViewState())
+    val state: StateFlow<HomeViewState> = _state.asStateFlow()
 
-    suspend fun setSize(updatedSize: IntSize) {
-        _state.emit(
-            UiEvent.ShowSnackbar(
-                message = "Hello"
-            )
-        )
-//        _state.update { it.copy(size = updatedSize)}
+    fun setSize(updatedSize: IntSize) {
+        _state.update { it.copy(size = updatedSize)}
     }
 
     init {

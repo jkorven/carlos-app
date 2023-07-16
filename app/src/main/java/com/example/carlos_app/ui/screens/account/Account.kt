@@ -10,9 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 @Composable
-fun AccountScreen() {
+fun AccountScreen(
+    navController: NavHostController
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier

@@ -10,9 +10,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.navigation.NavHostController
 
 @Composable
-fun OrderScreen() {
+fun LocationsScreen(
+    navController: NavHostController
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -20,7 +23,7 @@ fun OrderScreen() {
             .background(Color.Blue)
     ) {
         Text(
-            text = "ORDER",
+            text = "LOCATIONS",
             fontSize = MaterialTheme.typography.titleMedium.fontSize,
             fontWeight = FontWeight.Bold,
             color = Color.White

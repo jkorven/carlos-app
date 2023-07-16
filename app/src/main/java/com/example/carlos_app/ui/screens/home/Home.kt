@@ -55,19 +55,30 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.carlos_app.R
 import com.example.carlos_app.data.json.Spotlights
 import com.example.carlos_app.ui.screens.home.components.Spotlight
+import com.example.carlos_app.util.Screen
 
 @SuppressLint("RememberReturnType")
 @Composable
-fun HomeScreen() {
-    var viewModel: HomeViewModel = HomeViewModel()
-    HomeContent(viewModel = viewModel)
+fun HomeScreen(
+    navController: NavHostController
+) {
+    val viewModel = HomeViewModel()
+    HomeContent(
+        navController = navController,
+        viewModel = viewModel
+    )
 }
 @Composable
-fun HomeContent(viewModel: HomeViewModel) {
+fun HomeContent(
+    navController: NavHostController,
+    viewModel: HomeViewModel
+) {
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()
@@ -132,6 +143,7 @@ fun HomeContent(viewModel: HomeViewModel) {
                 )
             }
         }
+        // Buttons
         Box (
             modifier = Modifier
                 .fillMaxSize()
@@ -143,7 +155,7 @@ fun HomeContent(viewModel: HomeViewModel) {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth(),
-                contentPadding = PaddingValues(top = 20.dp, start = 20.dp, end = 20.dp, bottom = 20.dp),
+                contentPadding = PaddingValues( start = 20.dp, end = 20.dp, bottom = 20.dp),
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -154,7 +166,7 @@ fun HomeContent(viewModel: HomeViewModel) {
                             .height(100.dp)
                             .padding(vertical = 20.dp),
                         onClick = {
-                            //your onclick code here
+                            navController.navigate(Screen.MenuAndOrderScreen.route)
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                         shape = RoundedCornerShape(5.dp),
@@ -179,7 +191,7 @@ fun HomeContent(viewModel: HomeViewModel) {
                             .height(100.dp)
                             .padding(vertical = 20.dp),
                         onClick = {
-                            //your onclick code here
+                            navController.navigate(Screen.LocationsScreen.route)
                         },
                         colors = ButtonDefaults.buttonColors(containerColor = Color.White),
                         shape = RoundedCornerShape(5.dp),

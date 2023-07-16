@@ -19,30 +19,32 @@ import androidx.compose.material.icons.filled.StoreMallDirectory
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 
-sealed class NavBarScreen(
+sealed class BottomNavBarItem(
     val route: String,
-    val title: String,
-    val icon: ImageVector
+    val icon: ImageVector? = null,
+    val title: String? = null,
+    val contentDescription: String? = null,
+    val alertCount: Int? = null
 ) {
-    object Home: NavBarScreen(
+    object Home: BottomNavBarItem(
         route = "home",
         title = "Home",
         icon = Icons.Default.Home
     )
 
-    object Menu: NavBarScreen(
+    object Menu: BottomNavBarItem(
         route = "menu",
         title = "Menu & Order",
         icon = Icons.Default.Restaurant
     )
 
-    object Order: NavBarScreen(
+    object Order: BottomNavBarItem(
         route = "order",
         title = "Locations",
         icon = Icons.Default.LocationOn
     )
 
-    object Account: NavBarScreen(
+    object Account: BottomNavBarItem(
         route = "account",
         title = "Account",
         icon = Icons.Default.Person
