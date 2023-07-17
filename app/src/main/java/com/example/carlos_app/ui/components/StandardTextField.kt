@@ -12,6 +12,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
@@ -27,17 +29,22 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import com.example.carlos_app.R
 import com.example.carlos_app.ui.theme.IconSizeMedium
+import com.example.carlos_app.ui.theme.SolidWhite
 import com.example.carlos_app.util.TestTags
 
 @Composable
 fun StandardTextField(
     modifier: Modifier = Modifier,
     text: String = "",
-    hint: String = "",
+    hint: @Composable () -> Unit,
     maxLength: Int = 40,
     error: String = "",
     style: TextStyle = TextStyle(
-        color = MaterialTheme.colorScheme.background
+        color = SolidWhite
+    ),
+    colors: TextFieldColors = TextFieldDefaults.colors(
+        focusedContainerColor = Color.Black.copy(alpha = 0.8f),
+        unfocusedContainerColor = Color.Black.copy(alpha = 0.5f)
     ),
     singleLine: Boolean = true,
     maxLines: Int = 1,
@@ -64,14 +71,10 @@ fun StandardTextField(
                     onValueChange(it)
                 }
             },
-            maxLines = maxLines,
             textStyle = style,
-            placeholder = {
-                Text(
-                    text = hint,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            },
+            colors = colors,
+            maxLines = maxLines,
+            placeholder = hint,
             isError = error != "",
             keyboardOptions = KeyboardOptions(
                 keyboardType = keyboardType

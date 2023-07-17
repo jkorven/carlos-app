@@ -2,6 +2,7 @@ package com.example.carlos_app.ui.screens.login
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -87,12 +89,13 @@ fun LoginContent(
                 onValueChange = {
                     viewModel.setState(userName = it)
                 },
-                style = TextStyle(
-                    color = DarkGray
-                ),
                 keyboardType = KeyboardType.Email,
                 error = "",
-                hint = stringResource(R.string.login_hint)
+                hint = {
+                    Text(
+                        text = stringResource(R.string.login_hint)
+                    )
+                }
             )
             Spacer(modifier = Modifier.height(SpaceMedium))
             StandardTextField(
@@ -100,10 +103,11 @@ fun LoginContent(
                 onValueChange = {
                     viewModel.setState(password = it)
                 },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                hint = stringResource(R.string.password_hint),
+                hint = {
+                    Text(
+                        text = stringResource(R.string.password_hint)
+                    )
+                },
                 keyboardType = KeyboardType.Password,
                 error = state.value.passwordError,
                 isPasswordVisible = state.value.showPassword,
