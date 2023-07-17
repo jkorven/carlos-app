@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 class LoginViewModel: ViewModel() {
 
@@ -19,12 +20,14 @@ class LoginViewModel: ViewModel() {
         userNameError: String = _state.value.userNameError,
         passwordError: String = _state.value.passwordError
     ) {
-        _state.value = _state.value.copy(
-            userName = userName,
-            password = password,
-            showPassword = showPassword,
-            userNameError = userNameError,
-            passwordError = passwordError
-        )
+        _state.update {
+            it.copy(
+                userName = userName,
+                password = password,
+                showPassword = showPassword,
+                userNameError = userNameError,
+                passwordError = passwordError
+            )
+        }
     }
 }

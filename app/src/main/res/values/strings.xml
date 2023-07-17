@@ -11,6 +11,8 @@
     <string name="login">Login</string>
     <string name="login_hint">Username / E-Mail</string>
     <string name="password_hint">Password</string>
+    <string name="create_account">Create New Account</string>
+    <string name="continue_as_guest">Continue As Guest</string>
 
     // Password field
     <string name="password_visible_content_description">Hide password</string>

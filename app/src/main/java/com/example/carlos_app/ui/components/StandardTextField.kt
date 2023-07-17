@@ -29,6 +29,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import com.example.carlos_app.R
 import com.example.carlos_app.ui.theme.IconSizeMedium
+import com.example.carlos_app.ui.theme.IconSizeSmall
+import com.example.carlos_app.ui.theme.LightGray
+import com.example.carlos_app.ui.theme.MediumGray
 import com.example.carlos_app.ui.theme.SolidWhite
 import com.example.carlos_app.util.TestTags
 
@@ -42,13 +45,12 @@ fun StandardTextField(
     style: TextStyle = TextStyle(
         color = SolidWhite
     ),
-    colors: TextFieldColors = TextFieldDefaults.colors(
-        focusedContainerColor = Color.Black.copy(alpha = 0.8f),
-        unfocusedContainerColor = Color.Black.copy(alpha = 0.5f)
-    ),
+    colors: TextFieldColors = TextFieldDefaults.colors(),
     singleLine: Boolean = true,
     maxLines: Int = 1,
     leadingIcon: ImageVector? = null,
+    leadingIconColor: Color = MediumGray,
+    trailingIconColor: Color = LightGray,
     keyboardType: KeyboardType = KeyboardType.Text,
     isPasswordToggleDisplayed: Boolean = keyboardType == KeyboardType.Password,
     isPasswordVisible: Boolean = false,
@@ -90,7 +92,7 @@ fun StandardTextField(
                     Icon(
                         imageVector = leadingIcon,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground,
+                        tint = leadingIconColor,
                         modifier = Modifier.size(IconSizeMedium)
                     )
                 }
@@ -113,7 +115,7 @@ fun StandardTextField(
                             } else {
                                 Icons.Filled.Visibility
                             },
-                            tint = Color.White,
+                            tint = trailingIconColor,
                             contentDescription = if (isPasswordVisible) {
                                 stringResource(id = R.string.password_visible_content_description)
                             } else {
