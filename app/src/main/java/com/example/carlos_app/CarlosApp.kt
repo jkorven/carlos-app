@@ -1,7 +1,8 @@
 package com.example.carlos_app
 
-import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -10,10 +11,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.carlos_app.domain.model.BottomNavBarItem
-import com.example.carlos_app.ui.components.StandardScaffold
+import com.example.carlos_app.ui.components.scaffolds.StandardScaffold
 import com.example.carlos_app.util.Navigation
 import com.example.carlos_app.util.Screen
 
+@ExperimentalMaterial3Api
 @Composable
 fun CarlosApp() {
     val navController: NavHostController = rememberNavController()
@@ -21,6 +23,7 @@ fun CarlosApp() {
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
+
         val bottomNavBarItems = BottomNavBarItem.listOfObjects
         StandardScaffold(
             navController = navController,

@@ -120,6 +120,7 @@ fun LoginContent(
                         modifier = Modifier
                             .fillMaxSize()
                             .padding(bottom = 10.dp),
+                        alignment = Alignment.BottomCenter,
                         painter = painterResource(R.drawable.logo_image),
                         contentDescription = null,
                         alpha = 0.3f,
