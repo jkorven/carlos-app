@@ -89,7 +89,7 @@ fun LoginContent(
         Surface(
             modifier = Modifier
                 .fillMaxSize(),
-            color = Color.Black.copy(alpha = 0.1f)
+            color = Color.Black.copy(alpha = 0f)
         ) {
 // Content column
             Column(
