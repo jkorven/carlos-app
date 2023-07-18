@@ -30,8 +30,6 @@ fun StandardScaffold(
     bottomNavBarItems: List<BottomNavBarItem>,
     enableBottomSheet: Boolean = false,
     bottomSheetContnet: @Composable() (ColumnScope.() -> Unit),
-    bottomSheetModifier: Modifier = Modifier,
-    bottomSheetParams: BottomSheetParams,
     content: @Composable () -> Unit
 ) {
     val bottomSheetCoroutineScope = rememberCoroutineScope()
@@ -41,26 +39,9 @@ fun StandardScaffold(
             initialValue = SheetValue.Hidden
         )
     )
-    val newParams = BottomSheetParams(
-        sheetValue =
-    )
 
     StandardBottomSheetScaffold(
-        sheetContent = ,
-        modifier = ,
-        scaffoldState = ,
-        sheetPeekHeight = ,
-        sheetShape = BottomSheetDefaults.ExpandedShape,
-        sheetContainerColor = ,
-        sheetContentColor = ,
-        sheetTonalElevation = ,
-        sheetShadowElevation = ,
-        sheetDragHandle = { /*TODO*/ },
-        sheetSwipeEnabled = ,
-        topBar = { /*TODO*/ },
-        snackbarHost = ,
-        containerColor = ,
-        contentColor = 
+        sheetContent = bottomSheetContnet
     ) {
         StandardScreenScaffold(
             navController = navController,
