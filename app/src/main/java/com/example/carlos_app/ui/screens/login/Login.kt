@@ -23,7 +23,9 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
@@ -56,21 +58,26 @@ import com.example.carlos_app.ui.theme.SpaceLarge
 import com.example.carlos_app.ui.theme.officinaSerif
 import com.example.carlos_app.util.Screen
 
+@ExperimentalMaterial3Api
 @Composable
 fun LoginScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    bottomSheetState: SheetState
 ) {
     val viewModel = LoginViewModel()
     LoginContent(
         navController,
-        viewModel
+        viewModel,
+        bottomSheetState
     )
 }
 
+@ExperimentalMaterial3Api
 @Composable
 fun LoginContent(
     navController: NavHostController,
-    viewModel: LoginViewModel
+    viewModel: LoginViewModel,
+    bottomSheetState: SheetState
 ) {
     val state = viewModel.state.collectAsState()
     BoxWithConstraints (
@@ -268,9 +275,7 @@ fun LoginContent(
                                 containerColor = Color.Black.copy(alpha = 0.2f)
                             ),
                             onClick = {
-//                            navController.navigate(
-//                                Screen.HomeScreen.route
-//                            )
+                                bottomSheetState.
                             },
                         ) {
                             Text (

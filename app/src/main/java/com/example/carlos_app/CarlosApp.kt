@@ -3,9 +3,13 @@ package com.example.carlos_app
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
+import androidx.compose.material3.rememberBottomSheetScaffoldState
+import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -20,6 +24,14 @@ import com.example.carlos_app.util.Screen
 fun CarlosApp() {
     val navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val bottomSheetCoroutineScope = rememberCoroutineScope()
+    val bottomSheetState = rememberStandardBottomSheetState(
+        initialValue = SheetValue.Hidden,
+        skipHiddenState = false
+    )
+    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
+        bottomSheetState = bottomSheetState
+    )
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
