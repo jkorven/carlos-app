@@ -1,8 +1,7 @@
-package com.example.carlos_app.ui.locations
+package com.example.carlos_app.ui.screens.locations
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
@@ -14,14 +13,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
-import com.example.carlos_app.local.Local
+import com.example.carlos_app.providers.Local
+import com.example.carlos_app.ui.viewmodel.AppViewModel
 
 @Composable
 fun LocationsScreen(
-    navController: NavHostController
 ) {
     val viewModel = Local.AppViewModel.current
+    LocationsContent(viewModel = viewModel)
+}
+@Composable
+fun LocationsContent(
+    viewModel: AppViewModel
+) {
+    val navController = Local.NavController.current
     val state = viewModel.state.collectAsState()
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

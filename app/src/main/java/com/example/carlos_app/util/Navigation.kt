@@ -1,47 +1,58 @@
 package com.example.carlos_app.util
 
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDeepLink
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.carlos_app.local.Local
-import com.example.carlos_app.ui.locations.LocationsScreen
+import com.example.carlos_app.providers.Local
+import com.example.carlos_app.ui.screens.locations.LocationsScreen
 import com.example.carlos_app.ui.screens.menu.MenuAndOrderScreen
 import com.example.carlos_app.ui.screens.account.AccountScreen
 import com.example.carlos_app.ui.screens.home.HomeScreen
 import com.example.carlos_app.ui.screens.login.LoginScreen
 import com.example.carlos_app.ui.screens.register.RegisterScreen
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
+import com.google.accompanist.navigation.material.bottomSheet
 
+@ExperimentalMaterialNavigationApi
+@ExperimentalMaterial3Api
 @Composable
-fun Navigation(
-    navController: NavHostController
-) {
-    val newNavController = Local.NavController.current
+fun Navigation() {
+    val navController = Local.NavController.current
+    val navBackstackEntry = Local.NavBackStackEntry.current
     NavHost(
-        navController = newNavController,
+        navController = navController,
         startDestination = Screen.LoginScreen.route
     ) {
         composable(Screen.LoginScreen.route) {
-            LoginScreen(navController)
+            LoginScreen()
+        }
+        bottomSheet(Screen.RegisterScreen.route) {
+            RegisterScreen()
         }
         composable(Screen.RegisterScreen.route) {
-            RegisterScreen(navController)
+            RegisterScreen()
         }
         composable(Screen.HomeScreen.route) {
-            HomeScreen(navController)
+            HomeScreen()
         }
         composable(Screen.MenuAndOrderScreen.route) {
-            MenuAndOrderScreen(navController)
+            MenuAndOrderScreen()
         }
         composable(Screen.LocationsScreen.route) {
-            LocationsScreen(navController)
+            LocationsScreen()
         }
         composable(Screen.AccountScreen.route) {
-            AccountScreen(navController)
+            AccountScreen()
         }
     }
 }

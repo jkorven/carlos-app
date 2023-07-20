@@ -10,13 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
+import com.example.carlos_app.providers.Local
 
 @Composable
 fun AccountScreen(
-    navController: NavHostController
+
 ) {
+    val navController = Local.NavController.current
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier

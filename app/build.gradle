@@ -89,4 +89,7 @@ dependencies {
 
     // Saved state module for ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version")
+
+    implementation "com.google.accompanist:accompanist-navigation-material:0.23.1"
+
 }

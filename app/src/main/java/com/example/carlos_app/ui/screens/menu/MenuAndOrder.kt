@@ -20,17 +20,14 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntSize
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.carlos_app.local.Local
+import com.example.carlos_app.providers.Local
 import com.example.carlos_app.ui.viewmodel.AppViewModel
 
 
 @SuppressLint("RememberReturnType")
 @Composable
 fun MenuAndOrderScreen(
-    navController: NavHostController
 ) {
     val viewModel = Local.AppViewModel.current
     MenuAndOrderContent(viewModel = viewModel)
@@ -40,6 +37,7 @@ fun MenuAndOrderScreen(
 fun MenuAndOrderContent(
     viewModel: AppViewModel
 ) {
+    val navController = Local.NavController.current
     val state = viewModel.state.collectAsState()
     var size by remember { mutableStateOf(IntSize.Zero)}
     BoxWithConstraints (

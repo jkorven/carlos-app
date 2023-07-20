@@ -5,19 +5,25 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberBottomSheetScaffoldState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.carlos_app.domain.model.BottomNavBarItem
+import com.example.carlos_app.providers.Local
+import com.example.carlos_app.providers.LocalExp
+import com.example.carlos_app.ui.navigation.BottomSheetMap
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -31,57 +37,59 @@ fun StandardScaffold(
     bottomSheetContnet: @Composable (ColumnScope.() -> Unit)? = null,
     content: @Composable () -> Unit
 ) {
-
-
-//    StandardBottomSheetScaffold(
-//        sheetContent = {
-//            BotSheetContent(
-//              coroutineScope = bottomSheetCoroutineScope,
-//                sheetState = bottomSheetState
-//            )
-//        },
-//        scaffoldState = bottomSheetScaffoldS
-//    ) {
+    val navBackStackEntry = Local.NavBackStackEntry.current
+    val bottomSheetScaffoldState = LocalExp.BottomSheetScaffoldState.current
+    val sheetContent: Unit = BottomSheetMap(
+        currentRoute = navBackStackEntry?.destination?.route,
+        bottomSheetScaffoldState = bottomSheetScaffoldState
+    )
+    StandardBottomSheetScaffold(
+        sheetContent = {
+            sheetContent
+        },
+        scaffoldState = bottomSheetScaffoldState
+    ) {
         StandardScreenScaffold(
             navController = navController,
             modifier = modifier,
             showBottomNavBar = showBottomNavBar,
             bottomNavBarItems = bottomNavBarItems,
-//            bottomSheetScaffoldState = bottomSheetScaffoldState,
-//            bottomSheetCoroutineScope = bottomSheetCoroutineScope
         ) {
             content()
         }
-//    }
+    }
 }
 
 @ExperimentalMaterial3Api
 @Composable
 fun BotSheetContent(
-    coroutineScope: CoroutineScope,
-    sheetState: SheetState
+    bottomSheetScaffoldState: BottomSheetScaffoldState
 ) {
+    val scope = rememberCoroutineScope()
+
     Surface(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        Button(
-            modifier = Modifier
-                .fillMaxSize(),
-            onClick = {
-                coroutineScope.launch {
-                    if(!sheetState.isVisible) {
-                        sheetState.expand()
-                    } else {
-                        sheetState.hide()
-                    }
-
-                }
-            }
+        Box(
+            contentAlignment = Alignment.Center
         ) {
-            Text(
-                text = "Hello"
-            )
+            Button(
+                modifier = Modifier
+                    .height(100.dp)
+                    .width(200.dp),
+                onClick = {
+                    scope.launch {
+                        bottomSheetScaffoldState.bottomSheetState.hide()
+                    }
+                }
+            ) {
+                Text(
+                    text = "Hello"
+                )
+            }
         }
+
+
     }
 }

@@ -61,25 +61,24 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.carlos_app.R
 import com.example.carlos_app.data.json.Spotlights
+import com.example.carlos_app.providers.Local
 import com.example.carlos_app.ui.screens.home.components.Spotlight
 import com.example.carlos_app.util.Screen
 
 @SuppressLint("RememberReturnType")
 @Composable
 fun HomeScreen(
-    navController: NavHostController
 ) {
     val viewModel: HomeViewModel = viewModel()
     HomeContent(
-        navController = navController,
         viewModel = viewModel
     )
 }
 @Composable
 fun HomeContent(
-    navController: NavHostController,
     viewModel: HomeViewModel
 ) {
+    val navController = Local.NavController.current
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxSize()

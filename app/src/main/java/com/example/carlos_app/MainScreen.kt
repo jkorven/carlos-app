@@ -36,7 +36,7 @@ fun MainScreen() {
             ),
             bottomNavBarItems = bottomNavBarItems,
         ) {
-            Navigation(navController = navController)
+            Navigation()
         }
     }
 }
