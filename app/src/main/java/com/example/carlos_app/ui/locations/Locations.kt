@@ -1,32 +1,50 @@
-package com.example.carlos_app.ui.screens
+package com.example.carlos_app.ui.locations
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
+import com.example.carlos_app.local.Local
 
 @Composable
 fun LocationsScreen(
     navController: NavHostController
 ) {
-    Box(
-        contentAlignment = Alignment.Center,
+    val viewModel = Local.AppViewModel.current
+    val state = viewModel.state.collectAsState()
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Blue)
+            .background(Color.White)
     ) {
         Text(
             text = "LOCATIONS",
             fontSize = MaterialTheme.typography.titleMedium.fontSize,
             fontWeight = FontWeight.Bold,
-            color = Color.White
+            color = Color.Red
         )
+        Button(onClick = {
+            viewModel.setState(
+                num = state.value.num + 1
+            )
+        }
+        ) {
+            Text(
+                text = state.value.num.toString()
+            )
+        }
     }
 }

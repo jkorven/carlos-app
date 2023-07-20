@@ -8,8 +8,9 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.carlos_app.ui.screens.LocationsScreen
-import com.example.carlos_app.ui.screens.MenuAndOrderScreen
+import com.example.carlos_app.local.Local
+import com.example.carlos_app.ui.locations.LocationsScreen
+import com.example.carlos_app.ui.screens.menu.MenuAndOrderScreen
 import com.example.carlos_app.ui.screens.account.AccountScreen
 import com.example.carlos_app.ui.screens.home.HomeScreen
 import com.example.carlos_app.ui.screens.login.LoginScreen
@@ -19,8 +20,9 @@ import com.example.carlos_app.ui.screens.register.RegisterScreen
 fun Navigation(
     navController: NavHostController
 ) {
+    val newNavController = Local.NavController.current
     NavHost(
-        navController = navController,
+        navController = newNavController,
         startDestination = Screen.LoginScreen.route
     ) {
         composable(Screen.LoginScreen.route) {

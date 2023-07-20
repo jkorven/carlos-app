@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.carlos_app.R
+import com.example.carlos_app.local.Local
 import com.example.carlos_app.ui.components.StandardTextField
 import com.example.carlos_app.ui.theme.DarkGray
 import com.example.carlos_app.ui.theme.LightGray
@@ -62,13 +63,14 @@ import com.example.carlos_app.util.Screen
 @Composable
 fun LoginScreen(
     navController: NavHostController,
-    bottomSheetState: SheetState
+//    bottomSheetState: SheetState
 ) {
+    val newNavController = Local.NavController.current
     val viewModel = LoginViewModel()
     LoginContent(
-        navController,
+        newNavController,
         viewModel,
-        bottomSheetState
+//        bottomSheetState
     )
 }
 
@@ -77,9 +79,10 @@ fun LoginScreen(
 fun LoginContent(
     navController: NavHostController,
     viewModel: LoginViewModel,
-    bottomSheetState: SheetState
+//    bottomSheetState: SheetState
 ) {
     val state = viewModel.state.collectAsState()
+
     BoxWithConstraints (
         modifier = Modifier
             .fillMaxSize()
@@ -275,7 +278,7 @@ fun LoginContent(
                                 containerColor = Color.Black.copy(alpha = 0.2f)
                             ),
                             onClick = {
-                                bottomSheetState.
+//                                bottomSheetState.
                             },
                         ) {
                             Text (

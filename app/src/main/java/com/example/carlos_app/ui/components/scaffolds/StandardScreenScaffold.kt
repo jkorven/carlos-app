@@ -24,8 +24,8 @@ fun StandardScreenScaffold(
     modifier: Modifier = Modifier,
     showBottomNavBar: Boolean = true,
     bottomNavBarItems: List<BottomNavBarItem>,
-    bottomSheetScaffoldState: BottomSheetScaffoldState,
-    bottomSheetCoroutineScope: CoroutineScope,
+//    bottomSheetScaffoldState: BottomSheetScaffoldState,
+//    bottomSheetCoroutineScope: CoroutineScope,
     content: @Composable () -> Unit
 ) {
     Scaffold(
@@ -47,13 +47,7 @@ fun StandardScreenScaffold(
                     )
                 }
         ) {
-            if(bottomSheetState != null)  {
-                content(
-                    bottomSheetState = bottomSheetState
-                )
-            }  else {
-                content()
-            }
+            content()
         }
     }
 }

@@ -33,26 +33,26 @@ fun StandardScaffold(
 ) {
 
 
-    StandardBottomSheetScaffold(
-        sheetContent = {
-            BotSheetContent(
-                coroutineScope = bottomSheetCoroutineScope,
-                sheetState = bottomSheetState
-            )
-        },
-        scaffoldState = bottomSheetScaffoldState
-    ) {
+//    StandardBottomSheetScaffold(
+//        sheetContent = {
+//            BotSheetContent(
+//              coroutineScope = bottomSheetCoroutineScope,
+//                sheetState = bottomSheetState
+//            )
+//        },
+//        scaffoldState = bottomSheetScaffoldS
+//    ) {
         StandardScreenScaffold(
             navController = navController,
             modifier = modifier,
             showBottomNavBar = showBottomNavBar,
             bottomNavBarItems = bottomNavBarItems,
-            bottomSheetScaffoldState = bottomSheetScaffoldState,
-            bottomSheetCoroutineScope = bottomSheetCoroutineScope
+//            bottomSheetScaffoldState = bottomSheetScaffoldState,
+//            bottomSheetCoroutineScope = bottomSheetCoroutineScope
         ) {
             content()
         }
-    }
+//    }
 }
 
 @ExperimentalMaterial3Api

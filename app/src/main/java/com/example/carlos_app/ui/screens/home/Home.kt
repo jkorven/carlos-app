@@ -55,6 +55,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
@@ -68,7 +69,7 @@ import com.example.carlos_app.util.Screen
 fun HomeScreen(
     navController: NavHostController
 ) {
-    val viewModel = HomeViewModel()
+    val viewModel: HomeViewModel = viewModel()
     HomeContent(
         navController = navController,
         viewModel = viewModel
