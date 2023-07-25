@@ -24,47 +24,33 @@ import com.example.carlos_app.ui.viewmodel.AppViewModel
 import com.example.carlos_app.util.EmptyComposable
 import com.example.carlos_app.util.Navigation
 import com.example.carlos_app.util.Screen
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 
 
+@ExperimentalMaterialNavigationApi
 @ExperimentalMaterial3Api
 @Composable
 fun CarlosApp() {
     val navController: NavHostController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val bottomSheetCoroutineScope = rememberCoroutineScope()
-    val bottomSheetState = rememberStandardBottomSheetState(
-        initialValue = SheetValue.Hidden,
-        skipHiddenState = false
-    )
-    val bottomSheetScaffoldState = rememberBottomSheetScaffoldState(
-        bottomSheetState = bottomSheetState
-    )
-    val bottomSheetContent: @Composable () -> Unit = {}
-    Surface(
-        modifier = Modifier.fillMaxSize()
+    val viewModel: AppViewModel = viewModel()
+    val bottomNavBarItems = BottomNavBarItem.listOfObjects
+    CompositionLocalProvider(
+        Local.NavController provides navController,
+        Local.AppViewModel provides viewModel,
+        Local.NavBackStackEntry provides navBackStackEntry
     ) {
-        val viewModel: AppViewModel = viewModel()
-        val bottomNavBarItems = BottomNavBarItem.listOfObjects
-        CompositionLocalProvider(
-            Local.NavController provides navController,
-            Local.AppViewModel provides viewModel,
-            Local.NavBackStackEntry provides navBackStackEntry,
-            Local.BottomSheetCoroutineScope provides bottomSheetCoroutineScope,
-            LocalExp.BottomSheetScaffoldState provides bottomSheetScaffoldState
+        StandardScaffold(
+            modifier = Modifier.fillMaxSize(),
+            showBottomNavBar = navBackStackEntry?.destination?.route in listOf(
+                Screen.HomeScreen.route,
+                Screen.MenuAndOrderScreen.route,
+                Screen.LocationsScreen.route,
+                Screen.AccountScreen.route
+            ),
+            bottomNavBarItems = bottomNavBarItems,
         ) {
-            StandardScaffold(
-                navController = navController,
-                modifier = Modifier.fillMaxSize(),
-                showBottomNavBar = navBackStackEntry?.destination?.route in listOf(
-                    Screen.HomeScreen.route,
-                    Screen.MenuAndOrderScreen.route,
-                    Screen.LocationsScreen.route,
-                    Screen.AccountScreen.route
-                ),
-                bottomNavBarItems = bottomNavBarItems,
-            ) {
-                Navigation()
-            }
+            Navigation()
         }
     }
 }

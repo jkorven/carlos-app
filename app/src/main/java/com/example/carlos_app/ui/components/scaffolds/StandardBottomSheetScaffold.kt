@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 @ExperimentalMaterial3Api
 @Composable
 fun StandardBottomSheetScaffold(
-    sheetContent: @Composable (() -> Unit),
+    sheetContent: @Composable() (ColumnScope.() -> Unit),
     modifier: Modifier = Modifier,
     scaffoldState: BottomSheetScaffoldState,
     sheetPeekHeight: Dp = 0.dp,
@@ -38,11 +38,8 @@ fun StandardBottomSheetScaffold(
     contentColor: Color = contentColorFor(containerColor),
     content: @Composable (PaddingValues) -> Unit
 ) {
-    if(sheetContent != null) {
         BottomSheetScaffold(
-            sheetContent = {
-                sheetContent()
-            },
+            sheetContent = sheetContent,
             modifier = modifier,
             scaffoldState = scaffoldState,
             sheetPeekHeight = sheetPeekHeight,
@@ -59,7 +56,6 @@ fun StandardBottomSheetScaffold(
             contentColor = contentColor,
             content = content
         )
-    }
 }
 
 @Composable

@@ -6,7 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.ExperimentalMaterial3Api
 import com.example.carlos_app.CarlosApp
 import com.example.carlos_app.ui.theme.CarlosappTheme
+import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 
+@ExperimentalMaterialNavigationApi
 @ExperimentalMaterial3Api
 class MainActivity : ComponentActivity() {
 

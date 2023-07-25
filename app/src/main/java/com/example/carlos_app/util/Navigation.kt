@@ -13,12 +13,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import com.example.carlos_app.providers.Local
 import com.example.carlos_app.ui.screens.locations.LocationsScreen
 import com.example.carlos_app.ui.screens.menu.MenuAndOrderScreen
 import com.example.carlos_app.ui.screens.account.AccountScreen
 import com.example.carlos_app.ui.screens.home.HomeScreen
 import com.example.carlos_app.ui.screens.login.LoginScreen
+import com.example.carlos_app.ui.screens.login.LoginViewModel
 import com.example.carlos_app.ui.screens.register.RegisterScreen
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.bottomSheet
@@ -31,16 +33,15 @@ fun Navigation() {
     val navBackstackEntry = Local.NavBackStackEntry.current
     NavHost(
         navController = navController,
-        startDestination = Screen.LoginScreen.route
+        startDestination = "auth"
     ) {
-        composable(Screen.LoginScreen.route) {
-            LoginScreen()
-        }
-        bottomSheet(Screen.RegisterScreen.route) {
-            RegisterScreen()
-        }
-        composable(Screen.RegisterScreen.route) {
-            RegisterScreen()
+        navigation(
+            startDestination = Screen.LoginScreen.route,
+            route = "auth"
+        ) {
+            composable(Screen.LoginScreen.route) {
+                LoginScreen()
+            }
         }
         composable(Screen.HomeScreen.route) {
             HomeScreen()

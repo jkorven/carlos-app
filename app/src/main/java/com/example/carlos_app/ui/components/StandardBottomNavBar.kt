@@ -13,12 +13,13 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.carlos_app.domain.model.BottomNavBarItem
+import com.example.carlos_app.providers.Local
 
 @Composable
 fun StandardBottomNavBar(
-    navController: NavHostController,
     bottomNavBarItems: List<BottomNavBarItem>
 ) {
+    val navController: NavHostController = Local.NavController.current
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
         containerColor = Color.White,
