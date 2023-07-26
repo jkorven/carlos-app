@@ -23,9 +23,6 @@ object Local {
         error("No NavBackStackEntry provided")
     }
 
-    val BottomSheetCoroutineScope: ProvidableCompositionLocal<CoroutineScope> = compositionLocalOf {
-        error("No BottomSheetCoroutineScope provided")
-    }
 }
 
 @ExperimentalMaterial3Api

@@ -1,5 +1,6 @@
 package com.example.carlos_app.ui.viewmodel
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.unit.IntSize
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,7 +11,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 data class AppState (
-    val num: Int = 0
+    val num: Int = 0,
+    val size: IntSize = IntSize.Zero
 )
 
 class AppViewModel: ViewModel() {
@@ -18,11 +20,13 @@ class AppViewModel: ViewModel() {
     val state: StateFlow<AppState> = _state.asStateFlow()
 
     fun setState(
-        num: Int = _state.value.num
+        num: Int = _state.value.num,
+        size: IntSize = _state.value.size
     ) {
         _state.update {
             it.copy(
-                num = num
+                num = num,
+                size = size
             )
         }
     }

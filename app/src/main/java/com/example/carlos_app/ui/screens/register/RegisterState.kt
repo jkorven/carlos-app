@@ -1,6 +1,8 @@
 package com.example.carlos_app.ui.screens.register
 
 data class RegisterState(
+    val firstnameText: String = "",
+    val lastnameText: String = "",
     val usernameText: String = "",
     val usernameError: UsernameError? = null,
     val emailText: String = "",

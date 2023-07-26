@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -96,7 +97,7 @@ fun HomeContent(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(380.dp)
+                .height(480.dp)
         ) {
             AsyncImage(
                 modifier = Modifier
@@ -121,20 +122,23 @@ fun HomeContent(
                 contentDescription = null,
                 contentScale = ContentScale.Crop
             )
-            Box(
+            Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
                     .background(
                         brush = Brush.verticalGradient(
                             colors = listOf(Color.Black.copy(alpha = 0.8f), Color.Transparent)
                         )
                     ),
-                contentAlignment = Alignment.Center
+                horizontalAlignment = Alignment.CenterHorizontally
 
             ) {
+                Spacer(
+                    modifier = Modifier.padding(top = 20.dp)
+                )
                 Image(
                     modifier = Modifier
+                        .height(70.dp)
                         .width(80.dp)
                         .padding(vertical = 15.dp),
                     painter = painterResource(R.drawable.title_with_logo),
@@ -147,7 +151,7 @@ fun HomeContent(
         Box (
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 380.dp)
+                .padding(top = 480.dp)
                 .background(Color.Transparent),
             contentAlignment = Alignment.Center
         ) {

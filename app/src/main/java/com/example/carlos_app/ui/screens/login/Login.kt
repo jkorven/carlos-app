@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
@@ -54,7 +55,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.carlos_app.R
 import com.example.carlos_app.providers.Local
-import com.example.carlos_app.providers.LocalExp
 import com.example.carlos_app.ui.components.StandardTextField
 import com.example.carlos_app.ui.components.scaffolds.StandardBottomSheetScaffold
 import com.example.carlos_app.ui.screens.register.RegisterScreen
@@ -84,12 +84,13 @@ fun LoginScreen(
     StandardBottomSheetScaffold(
         sheetContent = {
             RegisterScreen(
-                viewModel = viewModel,
                 bottomSheetState = bottomSheetState,
                 scope = scope
             )
         },
-        scaffoldState = bottomSheetScaffoldState
+        scaffoldState = bottomSheetScaffoldState,
+        sheetShape = RoundedCornerShape(0.dp),
+        sheetContainerColor = Color.Transparent
     ) {
         LoginContent(
             viewModel = viewModel,

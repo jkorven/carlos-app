@@ -14,6 +14,15 @@
     <string name="create_account">Create New Account</string>
     <string name="continue_as_guest">Continue As Guest</string>
 
+    // Register
+    <string name="sign_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="zip_code">Zip Code</string>
+
     // Password field
     <string name="password_visible_content_description">Hide password</string>
     <string name="password_hidden_content_description">Show password</string>
