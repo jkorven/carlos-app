@@ -15,15 +15,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollDispatcher
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
+// Watch for an explanation (maybe)
+// https://www.youtube.com/watch?v=eFJ-vp9LZ9U
 @ExperimentalMaterial3Api
 @Composable
 fun StandardBottomSheetScaffold(
     sheetContent: @Composable() (ColumnScope.() -> Unit),
     modifier: Modifier = Modifier,
     scaffoldState: BottomSheetScaffoldState,
+    isFixedHeight: Dp? = null,
     sheetPeekHeight: Dp = 0.dp,
     sheetShape: Shape = BottomSheetDefaults.ExpandedShape,
     sheetContainerColor: Color = BottomSheetDefaults.ContainerColor,
@@ -42,7 +48,7 @@ fun StandardBottomSheetScaffold(
             sheetContent = sheetContent,
             modifier = modifier,
             scaffoldState = scaffoldState,
-            sheetPeekHeight = sheetPeekHeight,
+            sheetPeekHeight = isFixedHeight ?: sheetPeekHeight,
             sheetShape = sheetShape,
             sheetContainerColor = sheetContainerColor,
             sheetContentColor = sheetContentColor,
@@ -56,6 +62,20 @@ fun StandardBottomSheetScaffold(
             contentColor = contentColor,
             content = content
         )
+}
+
+private fun Modifier.nestedScrollIfSheetGesturesEnabled(
+    connection: NestedScrollConnection,
+    dispatcher: NestedScrollDispatcher? = null,
+    sheetGesturesEnabled: Boolean = true
+): Modifier {
+    return this.let {
+        if (sheetGesturesEnabled) {
+            it.nestedScroll(connection, dispatcher)
+        } else {
+            it
+        }
+    }
 }
 
 @Composable

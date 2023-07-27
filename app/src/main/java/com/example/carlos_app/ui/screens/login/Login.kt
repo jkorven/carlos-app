@@ -11,11 +11,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
@@ -64,6 +67,7 @@ import com.example.carlos_app.ui.theme.SolidWhite
 import com.example.carlos_app.ui.theme.SpaceLarge
 import com.example.carlos_app.ui.theme.officinaSerif
 import com.example.carlos_app.util.Screen
+import com.example.carlos_app.util.toDP
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -75,7 +79,10 @@ fun LoginScreen(
     val viewModel: LoginViewModel = viewModel()
     val bottomSheetState = rememberStandardBottomSheetState(
         initialValue = SheetValue.Hidden,
-        skipHiddenState = false
+        skipHiddenState = false,
+        confirmValueChange = {
+            it != SheetValue.Hidden
+        }
     )
     val bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = bottomSheetState
@@ -88,6 +95,7 @@ fun LoginScreen(
                 scope = scope
             )
         },
+//        isFixedHeight = globalState.value.size.height.toDP() - paddingValues.calculateTopPadding(),
         scaffoldState = bottomSheetScaffoldState,
         sheetShape = RoundedCornerShape(0.dp),
         sheetContainerColor = Color.Transparent

@@ -1,5 +1,7 @@
 package com.example.carlos_app
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.LocalOverscrollConfiguration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -17,7 +19,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -33,6 +37,7 @@ import com.example.carlos_app.util.Screen
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 
 
+@ExperimentalFoundationApi
 @ExperimentalMaterialNavigationApi
 @ExperimentalMaterial3Api
 @Composable
@@ -44,10 +49,13 @@ fun CarlosApp() {
     CompositionLocalProvider(
         Local.NavController provides navController,
         Local.AppViewModel provides viewModel,
-        Local.NavBackStackEntry provides navBackStackEntry
+        Local.NavBackStackEntry provides navBackStackEntry,
+        // Disables 'bounce' effect when reaching the end of a scrollable container
+        LocalOverscrollConfiguration provides null
     ) {
         StandardScaffold(
             modifier = Modifier
+                .nestedScroll(rememberNestedScrollInteropConnection())
                 .fillMaxSize()
                 .navigationBarsPadding()
                 .onGloballyPositioned {

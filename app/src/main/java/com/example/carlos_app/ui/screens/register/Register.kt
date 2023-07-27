@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -48,7 +49,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key.Companion.D
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -101,6 +104,7 @@ fun RegisterContent(
             .fillMaxWidth()
             .height(globalState.value.size.height.toDP() - paddingValues.calculateTopPadding())
             .background(SolidWhite)
+            .nestedScroll(rememberNestedScrollInteropConnection())
     ) {
         val toolbarHeight = 50.dp
         Box(
@@ -135,230 +139,265 @@ fun RegisterContent(
             )
         }
         // Content column
-        Column(
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = toolbarHeight, start = 25.dp, end = 25.dp)
-                .verticalScroll(
-                    state = rememberScrollState(),
-                    flingBehavior = ScrollableDefaults.flingBehavior()
-                )
         ) {
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(70.dp),
-                onClick = {
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    onClick = {
 
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Blue,
-                    contentColor = SolidWhite
-                ),
-                shape = RoundedCornerShape(3.dp)
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue,
+                        contentColor = SolidWhite
+                    ),
+                    shape = RoundedCornerShape(3.dp)
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
 
+                    }
                 }
             }
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(70.dp),
-                onClick = {
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    onClick = {
 
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Blue,
-                    contentColor = SolidWhite
-                ),
-                shape = RoundedCornerShape(3.dp)
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue,
+                        contentColor = SolidWhite
+                    ),
+                    shape = RoundedCornerShape(3.dp)
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
 
+                    }
                 }
             }
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            StandardTextField(
-                modifier = Modifier
-                    .shadow(elevation = 5.dp),
-                text = state.value.firstnameText,
-                onValueChange = {
-                    viewModel.onEvent(RegisterEvent.EnteredFirstname(it))
-                },
-                keyboardType = KeyboardType.Email,
-                error = "",
-                hint = {
-                    Text(
-                        text = stringResource(R.string.first_name),
-                        color = LightGray
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                StandardTextField(
+                    modifier = Modifier
+                        .shadow(elevation = 5.dp),
+                    text = state.value.firstnameText,
+                    onValueChange = {
+                        viewModel.onEvent(RegisterEvent.EnteredFirstname(it))
+                    },
+                    keyboardType = KeyboardType.Email,
+                    error = "",
+                    hint = {
+                        Text(
+                            text = stringResource(R.string.first_name),
+                            color = LightGray
+                        )
+                    },
+                    style = TextStyle(
+                        color = DarkGray
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = SolidWhite,
+                        unfocusedContainerColor = SolidWhite,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = SolidWhite,
-                    unfocusedContainerColor = SolidWhite,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
                 )
-            )
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            StandardTextField(
-                modifier = Modifier
-                    .shadow(elevation = 5.dp),
-                text = state.value.lastnameText,
-                onValueChange = {
-                    viewModel.onEvent(RegisterEvent.EnteredLastname(it))
-                },
-                keyboardType = KeyboardType.Email,
-                error = "",
-                hint = {
-                    Text(
-                        text = stringResource(R.string.last_name),
-                        color = LightGray
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                StandardTextField(
+                    modifier = Modifier
+                        .shadow(elevation = 5.dp),
+                    text = state.value.lastnameText,
+                    onValueChange = {
+                        viewModel.onEvent(RegisterEvent.EnteredLastname(it))
+                    },
+                    keyboardType = KeyboardType.Email,
+                    error = "",
+                    hint = {
+                        Text(
+                            text = stringResource(R.string.last_name),
+                            color = LightGray
+                        )
+                    },
+                    style = TextStyle(
+                        color = DarkGray
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = SolidWhite,
+                        unfocusedContainerColor = SolidWhite,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = SolidWhite,
-                    unfocusedContainerColor = SolidWhite,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
                 )
-            )
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            StandardTextField(
-                modifier = Modifier
-                    .shadow(elevation = 5.dp),
-                text = state.value.lastnameText,
-                onValueChange = {
-                    viewModel.onEvent(RegisterEvent.EnteredLastname(it))
-                },
-                keyboardType = KeyboardType.Email,
-                error = "",
-                hint = {
-                    Text(
-                        text = stringResource(R.string.last_name),
-                        color = LightGray
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                StandardTextField(
+                    modifier = Modifier
+                        .shadow(elevation = 5.dp),
+                    text = state.value.lastnameText,
+                    onValueChange = {
+                        viewModel.onEvent(RegisterEvent.EnteredLastname(it))
+                    },
+                    keyboardType = KeyboardType.Email,
+                    error = "",
+                    hint = {
+                        Text(
+                            text = stringResource(R.string.last_name),
+                            color = LightGray
+                        )
+                    },
+                    style = TextStyle(
+                        color = DarkGray
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = SolidWhite,
+                        unfocusedContainerColor = SolidWhite,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = SolidWhite,
-                    unfocusedContainerColor = SolidWhite,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
                 )
-            )
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            StandardTextField(
-                modifier = Modifier
-                    .shadow(elevation = 5.dp),
-                text = state.value.lastnameText,
-                onValueChange = {
-                    viewModel.onEvent(RegisterEvent.EnteredLastname(it))
-                },
-                keyboardType = KeyboardType.Email,
-                error = "",
-                hint = {
-                    Text(
-                        text = stringResource(R.string.last_name),
-                        color = LightGray
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                StandardTextField(
+                    modifier = Modifier
+                        .shadow(elevation = 5.dp),
+                    text = state.value.lastnameText,
+                    onValueChange = {
+                        viewModel.onEvent(RegisterEvent.EnteredLastname(it))
+                    },
+                    keyboardType = KeyboardType.Email,
+                    error = "",
+                    hint = {
+                        Text(
+                            text = stringResource(R.string.last_name),
+                            color = LightGray
+                        )
+                    },
+                    style = TextStyle(
+                        color = DarkGray
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = SolidWhite,
+                        unfocusedContainerColor = SolidWhite,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = SolidWhite,
-                    unfocusedContainerColor = SolidWhite,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
                 )
-            )
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            StandardTextField(
-                modifier = Modifier
-                    .shadow(elevation = 5.dp),
-                text = state.value.lastnameText,
-                onValueChange = {
-                    viewModel.onEvent(RegisterEvent.EnteredLastname(it))
-                },
-                keyboardType = KeyboardType.Email,
-                error = "",
-                hint = {
-                    Text(
-                        text = stringResource(R.string.last_name),
-                        color = LightGray
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                StandardTextField(
+                    modifier = Modifier
+                        .shadow(elevation = 5.dp),
+                    text = state.value.lastnameText,
+                    onValueChange = {
+                        viewModel.onEvent(RegisterEvent.EnteredLastname(it))
+                    },
+                    keyboardType = KeyboardType.Email,
+                    error = "",
+                    hint = {
+                        Text(
+                            text = stringResource(R.string.last_name),
+                            color = LightGray
+                        )
+                    },
+                    style = TextStyle(
+                        color = DarkGray
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = SolidWhite,
+                        unfocusedContainerColor = SolidWhite,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = SolidWhite,
-                    unfocusedContainerColor = SolidWhite,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
                 )
-            )
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            StandardTextField(
-                modifier = Modifier
-                    .shadow(elevation = 5.dp),
-                text = state.value.lastnameText,
-                onValueChange = {
-                    viewModel.onEvent(RegisterEvent.EnteredLastname(it))
-                },
-                keyboardType = KeyboardType.Email,
-                error = "",
-                hint = {
-                    Text(
-                        text = stringResource(R.string.last_name),
-                        color = LightGray
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                StandardTextField(
+                    modifier = Modifier
+                        .shadow(elevation = 5.dp),
+                    text = state.value.lastnameText,
+                    onValueChange = {
+                        viewModel.onEvent(RegisterEvent.EnteredLastname(it))
+                    },
+                    keyboardType = KeyboardType.Email,
+                    error = "",
+                    hint = {
+                        Text(
+                            text = stringResource(R.string.last_name),
+                            color = LightGray
+                        )
+                    },
+                    style = TextStyle(
+                        color = DarkGray
+                    ),
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = SolidWhite,
+                        unfocusedContainerColor = SolidWhite,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent
                     )
-                },
-                style = TextStyle(
-                    color = DarkGray
-                ),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = SolidWhite,
-                    unfocusedContainerColor = SolidWhite,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
                 )
-            )
-            Spacer(modifier = Modifier.height(SpaceLarge))
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(70.dp),
-                onClick = {
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
+            }
+            item{
+                Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(70.dp),
+                    onClick = {
 
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.Blue,
-                    contentColor = SolidWhite
-                ),
-                shape = RoundedCornerShape(3.dp)
-            ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
+                    },
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue,
+                        contentColor = SolidWhite
+                    ),
+                    shape = RoundedCornerShape(3.dp)
                 ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
 
+                    }
                 }
+            }
+            item{
+                Spacer(modifier = Modifier.height(SpaceLarge))
             }
         }
     }
