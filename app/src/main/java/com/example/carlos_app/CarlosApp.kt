@@ -4,22 +4,11 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.LocalOverscrollConfiguration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SheetValue
-import androidx.compose.material3.Surface
-import androidx.compose.material3.rememberBottomSheetScaffoldState
-import androidx.compose.material3.rememberStandardBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
@@ -29,10 +18,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.carlos_app.domain.model.BottomNavBarItem
 import com.example.carlos_app.providers.Local
-import com.example.carlos_app.providers.LocalExp
 import com.example.carlos_app.ui.components.scaffolds.StandardScaffold
 import com.example.carlos_app.ui.viewmodel.AppViewModel
-import com.example.carlos_app.util.EmptyComposable
 import com.example.carlos_app.util.Navigation
 import com.example.carlos_app.util.Screen
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
@@ -41,7 +28,6 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 @ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalMaterialNavigationApi
-@ExperimentalMaterial3Api
 @Composable
 fun CarlosApp() {
     val navController: NavHostController = rememberNavController()

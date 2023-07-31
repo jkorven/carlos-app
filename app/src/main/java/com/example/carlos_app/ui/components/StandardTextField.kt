@@ -8,15 +8,14 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TextFieldColors
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -31,7 +30,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.carlos_app.R
 import com.example.carlos_app.ui.theme.IconSizeMedium
-import com.example.carlos_app.ui.theme.IconSizeSmall
 import com.example.carlos_app.ui.theme.LightGray
 import com.example.carlos_app.ui.theme.MediumGray
 import com.example.carlos_app.ui.theme.SolidWhite
@@ -47,7 +45,7 @@ fun StandardTextField(
     style: TextStyle = TextStyle(
         color = SolidWhite
     ),
-    colors: TextFieldColors = TextFieldDefaults.colors(
+    colors: TextFieldColors = TextFieldDefaults.textFieldColors(
         focusedIndicatorColor = Color.Transparent,
         unfocusedIndicatorColor = Color.Transparent
     ),
@@ -136,8 +134,8 @@ fun StandardTextField(
         if(error.isNotEmpty()) {
             Text(
                 text = error,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.error,
+                style = MaterialTheme.typography.body2,
+                color = MaterialTheme.colors.error,
                 textAlign = TextAlign.End,
                 modifier = Modifier
                     .fillMaxWidth()

@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.carlos_app.domain.model.BottomNavBarItem
 import com.example.carlos_app.ui.components.StandardBottomNavBar
-import com.example.carlos_app.util.conditional
+import com.example.carlos_app.util.CustomModifiers.conditional
 
 @ExperimentalMaterial3Api
 @Composable

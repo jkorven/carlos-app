@@ -1,15 +1,12 @@
 package com.example.carlos_app.ui.screens.login
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,16 +21,14 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material.BottomSheetScaffoldState
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.BottomSheetState
 import androidx.compose.material.BottomSheetValue
-import androidx.compose.material3.SheetValue
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.rememberBottomSheetScaffoldState
 import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
@@ -68,12 +63,10 @@ import com.example.carlos_app.ui.theme.SolidWhite
 import com.example.carlos_app.ui.theme.SpaceLarge
 import com.example.carlos_app.ui.theme.officinaSerif
 import com.example.carlos_app.util.Screen
-import com.example.carlos_app.util.toDP
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @ExperimentalMaterialApi
-@ExperimentalMaterial3Api
 @Composable
 fun LoginScreen(
 //    viewModel: LoginViewModel = LoginViewModel()
@@ -106,7 +99,6 @@ fun LoginScreen(
 }
 
 @ExperimentalMaterialApi
-@ExperimentalMaterial3Api
 @Composable
 fun LoginContent(
     viewModel: LoginViewModel,
@@ -178,7 +170,7 @@ fun LoginContent(
                                 .fillMaxWidth(),
                             text = "Carlos O'Kelly's",
                             fontFamily = officinaSerif,
-                            fontSize = 32.sp,
+                            fontSize = MaterialTheme.typography.h2.fontSize,
                             fontWeight = FontWeight.Bold,
                             color = SolidWhite,
                             lineHeight = 1.sp,
@@ -189,7 +181,7 @@ fun LoginContent(
                                 .fillMaxWidth(),
                             text = "Inspired Mex",
                             fontFamily = officinaSerif,
-                            fontSize = 20.sp,
+                            fontSize = MaterialTheme.typography.h5.fontSize,
                             fontStyle = FontStyle.Italic,
                             lineHeight = 1.sp,
                             color = SolidWhite,
@@ -221,9 +213,8 @@ fun LoginContent(
                             color = DarkGray
                         ),
                         leadingIcon = Icons.Default.Person,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = SolidWhite.copy(alpha = 1f),
-                            unfocusedContainerColor = SolidWhite.copy(alpha = 0.9f),
+                        colors = TextFieldDefaults.textFieldColors(
+                            backgroundColor = SolidWhite.copy(alpha = 0.9f),
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent
                         )
@@ -247,9 +238,8 @@ fun LoginContent(
                             color = DarkGray
                         ),
                         leadingIcon = Icons.Default.Lock,
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = SolidWhite.copy(alpha = 1f),
-                            unfocusedContainerColor = SolidWhite.copy(alpha = 0.9f),
+                        colors = TextFieldDefaults.textFieldColors(
+                            backgroundColor = SolidWhite.copy(alpha = 0.9f),
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent
                         ),
@@ -262,7 +252,7 @@ fun LoginContent(
                     )
                     Spacer(modifier = Modifier.height(SpaceLarge))
                     Surface(
-                        shadowElevation = 5.dp,
+                        elevation = 5.dp,
                         color = Color.Transparent
                     ) {
                         Button(
@@ -278,7 +268,7 @@ fun LoginContent(
                                     )
                                 ),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.Black.copy(alpha = 0.2f)
+                                backgroundColor = Color.Black.copy(alpha = 0.2f)
                             ),
                             onClick = {
                                 navController.navigate(
@@ -288,14 +278,14 @@ fun LoginContent(
                         ) {
                             Text (
                                 text = stringResource(R.string.login),
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                color = MaterialTheme.colors.onPrimary,
                                 fontSize = 24.sp
                             )
                         }
                     }
                     Spacer(modifier = Modifier.height(SpaceLarge))
                     Surface(
-                        shadowElevation = 5.dp,
+                        elevation = 5.dp,
                         color = Color.Transparent
                     ) {
                         Button(
@@ -311,7 +301,7 @@ fun LoginContent(
                                     )
                                 ),
                             colors = ButtonDefaults.buttonColors(
-                                containerColor = Color.Black.copy(alpha = 0.2f)
+                                backgroundColor = Color.Black.copy(alpha = 0.2f)
                             ),
                             onClick = {
                                 scope.launch {
@@ -321,7 +311,7 @@ fun LoginContent(
                         ) {
                             Text (
                                 text = stringResource(R.string.create_account),
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                color = MaterialTheme.colors.onPrimary,
                                 fontSize = 24.sp
                             )
                         }
@@ -341,7 +331,7 @@ fun LoginContent(
                                 }
                             ),
                         text = stringResource(R.string.continue_as_guest),
-                        style = MaterialTheme.typography.titleMedium,
+                        style = MaterialTheme.typography.subtitle1,
                         color = SolidWhite,
                         textAlign = TextAlign.Center,
                         textDecoration = TextDecoration.Underline
@@ -353,7 +343,6 @@ fun LoginContent(
 }
 
 @ExperimentalMaterialApi
-@ExperimentalMaterial3Api
 @Preview
 @Composable
 fun LoginScreenPreview() {

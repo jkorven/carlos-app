@@ -1,72 +1,44 @@
 package com.example.carlos_app.ui.screens.home
 
-import android.annotation.SuppressLint
-import android.util.Log
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.semantics.Role.Companion.Image
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.IntSize
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.example.carlos_app.R
-import com.example.carlos_app.data.json.Spotlights
 import com.example.carlos_app.providers.Local
-import com.example.carlos_app.ui.screens.home.components.Spotlight
 import com.example.carlos_app.util.Screen
 
-@SuppressLint("RememberReturnType")
 @Composable
 fun HomeScreen(
 ) {
@@ -80,7 +52,7 @@ fun HomeContent(
     viewModel: HomeViewModel
 ) {
     val navController = Local.NavController.current
-    BoxWithConstraints(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .onGloballyPositioned {
@@ -172,9 +144,12 @@ fun HomeContent(
                         onClick = {
                             navController.navigate(Screen.MenuAndOrderScreen.route)
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
+                        colors = ButtonDefaults.buttonColors(
+                            backgroundColor = Color.Red,
+                            contentColor = MaterialTheme.colors.onPrimary
+                        ),
                         shape = RoundedCornerShape(5.dp),
-                        elevation =  ButtonDefaults.buttonElevation(
+                        elevation =  ButtonDefaults.elevation(
                             defaultElevation = 10.dp,
                             pressedElevation = 15.dp,
                             disabledElevation = 0.dp
@@ -197,9 +172,9 @@ fun HomeContent(
                         onClick = {
                             navController.navigate(Screen.LocationsScreen.route)
                         },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
                         shape = RoundedCornerShape(5.dp),
-                        elevation =  ButtonDefaults.buttonElevation(
+                        elevation =  ButtonDefaults.elevation(
                             defaultElevation = 10.dp,
                             pressedElevation = 15.dp,
                             disabledElevation = 0.dp
@@ -216,36 +191,6 @@ fun HomeContent(
                 }
             }
         }
-        // Sticker
-//        Box(
-//            modifier = Modifier
-//                .padding(top = 280.dp, start = 40.dp)
-//                .height(120.dp)
-//                .width(120.dp)
-//                .background(Color.Transparent),
-//            contentAlignment = Alignment.Center
-//        ) {
-//            Image(
-//                painter = painterResource(R.drawable.sticker_20pt),
-//                contentDescription = null,
-//                contentScale = ContentScale.FillBounds
-//            )
-//            Row(
-//                modifier = Modifier
-//                    .rotate(-20f)
-//                    .padding(horizontal = 15.dp),
-//            ){
-//                Text(
-//                    text = "Always Served Sizzlin' Hot!",
-//                    fontSize = 16.sp,
-//                    textAlign = TextAlign.Center,
-//                    color = Color.White,
-//                    fontWeight = FontWeight.Bold,
-//                    lineHeight = 18.sp
-//                )
-//            }
-//
-//        }
     }
 }
 
