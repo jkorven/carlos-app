@@ -10,3 +10,5 @@ val MediumBlue = Color(0xFF4287F5)
 val OffWhite = Color(0xFFCCCCCC)
 val SolidWhite = Color(0xFFFFFFFF)
 
+val FacebookBlue = Color(0xFF4267B2)
+

@@ -1,5 +1,6 @@
 package com.example.carlos_app.ui.screens.login
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -11,33 +12,33 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.BottomSheetScaffoldState
+import androidx.compose.material.BottomSheetScaffoldState
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SheetState
+import androidx.compose.material.BottomSheetState
+import androidx.compose.material.BottomSheetValue
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.material3.rememberBottomSheetScaffoldState
-import androidx.compose.material3.rememberStandardBottomSheetState
+import androidx.compose.material.rememberBottomSheetScaffoldState
+import androidx.compose.material.rememberBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -71,18 +72,15 @@ import com.example.carlos_app.util.toDP
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+@ExperimentalMaterialApi
 @ExperimentalMaterial3Api
 @Composable
 fun LoginScreen(
 //    viewModel: LoginViewModel = LoginViewModel()
 ) {
     val viewModel: LoginViewModel = viewModel()
-    val bottomSheetState = rememberStandardBottomSheetState(
-        initialValue = SheetValue.Hidden,
-        skipHiddenState = false,
-        confirmValueChange = {
-            it != SheetValue.Hidden
-        }
+    val bottomSheetState = rememberBottomSheetState(
+        initialValue = BottomSheetValue.Collapsed
     )
     val bottomSheetScaffoldState: BottomSheetScaffoldState = rememberBottomSheetScaffoldState(
         bottomSheetState = bottomSheetState
@@ -97,8 +95,7 @@ fun LoginScreen(
         },
 //        isFixedHeight = globalState.value.size.height.toDP() - paddingValues.calculateTopPadding(),
         scaffoldState = bottomSheetScaffoldState,
-        sheetShape = RoundedCornerShape(0.dp),
-        sheetContainerColor = Color.Transparent
+        sheetShape = RoundedCornerShape(0.dp)
     ) {
         LoginContent(
             viewModel = viewModel,
@@ -108,19 +105,19 @@ fun LoginScreen(
     }
 }
 
+@ExperimentalMaterialApi
 @ExperimentalMaterial3Api
 @Composable
 fun LoginContent(
     viewModel: LoginViewModel,
-    bottomSheetState: SheetState,
+    bottomSheetState: BottomSheetState,
     scope: CoroutineScope
 ) {
     val navController = Local.NavController.current
     val state = viewModel.state.collectAsState()
-    BoxWithConstraints (
+    Box(
         modifier = Modifier
             .fillMaxSize()
-
     ) {
         // Background image
         Image(
@@ -132,21 +129,22 @@ fun LoginContent(
         )
         Surface(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxSize()
+                .padding(
+                    start = SpaceLarge,
+                    end = SpaceLarge,
+                    top = 50.dp,
+                    bottom = 50.dp
+                ),
             color = Color.Black.copy(alpha = 0f)
         ) {
 // Content column
             Column(
                 verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxSize()
-                    .align(Alignment.Center)
-                    .padding(
-                        start = SpaceLarge,
-                        end = SpaceLarge,
-                        top = 50.dp,
-                        bottom = 50.dp
-                    )
+                    .imePadding()
             ) {
                 Box(
                     modifier = Modifier
@@ -225,7 +223,9 @@ fun LoginContent(
                         leadingIcon = Icons.Default.Person,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = SolidWhite.copy(alpha = 1f),
-                            unfocusedContainerColor = SolidWhite.copy(alpha = 0.9f)
+                            unfocusedContainerColor = SolidWhite.copy(alpha = 0.9f),
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
                         )
                     )
                     Spacer(modifier = Modifier.height(SpaceLarge))
@@ -249,7 +249,9 @@ fun LoginContent(
                         leadingIcon = Icons.Default.Lock,
                         colors = TextFieldDefaults.colors(
                             focusedContainerColor = SolidWhite.copy(alpha = 1f),
-                            unfocusedContainerColor = SolidWhite.copy(alpha = 0.9f)
+                            unfocusedContainerColor = SolidWhite.copy(alpha = 0.9f),
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent
                         ),
                         keyboardType = KeyboardType.Password,
                         error = state.value.passwordError,
@@ -269,7 +271,7 @@ fun LoginContent(
                                 .height(60.dp)
                                 .border(2.dp, SolidWhite, RoundedCornerShape(5.dp))
                                 .indication(
-                                    interactionSource = MutableInteractionSource(),
+                                    interactionSource = remember{MutableInteractionSource()},
                                     indication = rememberRipple(
                                         bounded = true,
                                         color = Color.Transparent
@@ -302,7 +304,7 @@ fun LoginContent(
                                 .height(60.dp)
                                 .border(2.dp, SolidWhite, RoundedCornerShape(5.dp))
                                 .indication(
-                                    interactionSource = MutableInteractionSource(),
+                                    interactionSource = remember{MutableInteractionSource()},
                                     indication = rememberRipple(
                                         bounded = true,
                                         color = Color.Transparent
@@ -329,7 +331,7 @@ fun LoginContent(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable(
-                                interactionSource = MutableInteractionSource(),
+                                interactionSource = remember{MutableInteractionSource()},
                                 indication = rememberRipple(
                                     bounded = true,
                                     color = Color.Transparent
@@ -350,6 +352,7 @@ fun LoginContent(
     }
 }
 
+@ExperimentalMaterialApi
 @ExperimentalMaterial3Api
 @Preview
 @Composable

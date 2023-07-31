@@ -9,7 +9,9 @@ data class RegisterState(
     val emailError: EmailError? = null,
     val passwordText: String = "",
     val passwordError: PasswordError? = null,
-    val isPasswordVisible: Boolean = false
+    val isPasswordVisible: Boolean = false,
+    val phoneNumberText: String = "",
+    val zipcodeText: String = ""
 ) {
     sealed class UsernameError {
         object FieldEmpty : UsernameError()

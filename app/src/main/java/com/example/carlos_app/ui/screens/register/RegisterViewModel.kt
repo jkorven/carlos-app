@@ -38,6 +38,16 @@ class RegisterViewModel: ViewModel() {
                     passwordText = event.value
                 )
             }
+            is RegisterEvent.EnteredPhoneNumber -> {
+                _state.value = _state.value.copy(
+                    phoneNumberText = event.value
+                )
+            }
+            is RegisterEvent.EnteredZipcode -> {
+                _state.value = _state.value.copy(
+                    zipcodeText = event.value
+                )
+            }
             is RegisterEvent.TogglePasswordVisibility -> {
                 _state.value = _state.value.copy(
                     isPasswordVisible = !state.value.isPasswordVisible

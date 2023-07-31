@@ -1,6 +1,7 @@
 package com.example.carlos_app.util
 
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -25,6 +26,7 @@ import com.example.carlos_app.ui.screens.register.RegisterScreen
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.bottomSheet
 
+@ExperimentalMaterialApi
 @ExperimentalMaterialNavigationApi
 @ExperimentalMaterial3Api
 @Composable

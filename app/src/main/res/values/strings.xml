@@ -14,6 +14,10 @@
     <string name="create_account">Create New Account</string>
     <string name="continue_as_guest">Continue As Guest</string>
 
+    // Third-Party Login
+    <string name="login_google">Sign Up with Google</string>
+    <string name="login_facebook">Sign Up with Facebook</string>
+
     // Register
     <string name="sign_up">Sign Up</string>
     <string name="first_name">First Name</string>
@@ -22,6 +26,11 @@
     <string name="password">Password</string>
     <string name="phone_number">Phone Number</string>
     <string name="zip_code">Zip Code</string>
+
+    <string name="this_field_cant_be_empty">This field can\'t be empty</string>
+    <string name="not_a_valid_email">This is not a valid email</string>
+    <string name="input_too_short">The minimum length is %d</string>
+    <string name="invalid_password">The password needs to contain at least one uppercase letter and one number</string>
 
     // Password field
     <string name="password_visible_content_description">Hide password</string>
