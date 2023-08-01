@@ -1,5 +1,6 @@
 package com.example.carlos_app.providers
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.ProvidableCompositionLocal
@@ -23,6 +24,9 @@ object Local {
         error("No NavBackStackEntry provided")
     }
 
+//    val SystemBarsPaddingValues: ProvidableCompositionLocal<PaddingValues> = compositionLocalOf {
+//        error("No SystemBarsPaddingValues provided")
+//    }
 }
 
 @ExperimentalMaterial3Api
