@@ -59,7 +59,7 @@ import com.example.carlos_app.ui.theme.LightGray
 import com.example.carlos_app.ui.theme.SolidWhite
 import com.example.carlos_app.ui.theme.SpaceLarge
 import com.example.carlos_app.util.Constants
-import com.example.carlos_app.util.toDP
+import com.example.carlos_app.util.Ext.toDP
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

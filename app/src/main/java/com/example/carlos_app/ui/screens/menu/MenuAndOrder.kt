@@ -32,6 +32,7 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
@@ -57,6 +58,7 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.example.carlos_app.data.MenuRepository.getMenuCategoriesData
 import com.example.carlos_app.providers.Local
+import com.example.carlos_app.ui.components.switches.ToggleSwitch
 import com.example.carlos_app.ui.theme.DarkGray
 import com.example.carlos_app.ui.theme.OffWhite
 import com.example.carlos_app.ui.theme.SolidWhite
@@ -94,26 +96,35 @@ fun MenuAndOrderContent(
                 elevation = 5.dp,
                 contentColor = DarkGray
             ) {
-                Box(
-                    modifier = Modifier.fillMaxSize().statusBarsPadding()
-                ) {
-
-                }
-//                Spacer(modifier = Modifier.statusBarsPadding())
-                Row(
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(20.dp)
-                        .border(width = 2.dp, color = Color.Red)
-                        .padding(horizontal = 24.dp)
-                        .statusBarsPadding(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                        .fillMaxSize()
+                        .statusBarsPadding()
                 ) {
-                    Text(text = "ORDER")
-                    Icon(imageVector = Icons.Default.Search, contentDescription = null)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Order",
+                            fontSize = MaterialTheme.typography.h3.fontSize,
+                            fontWeight = FontWeight.Black
+                        )
+                        Icon(
+                            modifier = Modifier.size(20.dp),
+                            imageVector = Icons.Default.Search,
+                            contentDescription = null
+                        )
+                    }
+                    ToggleSwitch(labelList = listOf(
+                        "Carryout", "Curbside"
+                    ))
                 }
             }
+
             // Menu categories
             Box(
                 modifier = Modifier
