@@ -120,8 +120,11 @@ fun MenuAndOrderContent(
                         )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
-                    ToggleSwitch(labelList = listOf(
-                        "Carryout", "Curbside"
+                    ToggleSwitch(
+                        modifier = Modifier
+                            .width(240.dp),
+                        labelList = listOf(
+                        "Carryout", "Curbside", "Dine-In"
                     ))
                 }
             }
