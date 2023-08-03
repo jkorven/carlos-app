@@ -100,11 +100,11 @@ fun MenuAndOrderContent(
                     modifier = Modifier
                         .fillMaxSize()
                         .statusBarsPadding()
+                        .padding(horizontal = 24.dp)
                 ) {
                     Row(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
+                            .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -119,6 +119,7 @@ fun MenuAndOrderContent(
                             contentDescription = null
                         )
                     }
+                    Spacer(modifier = Modifier.height(8.dp))
                     ToggleSwitch(labelList = listOf(
                         "Carryout", "Curbside"
                     ))
