@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.carlos_app.domain.model.ToggleOption
 import com.example.carlos_app.ui.theme.DarkGray
 import com.example.carlos_app.ui.theme.MediumGray
 
@@ -47,8 +48,7 @@ import com.example.carlos_app.ui.theme.MediumGray
 @Composable
 fun ToggleSwitch(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit,
-    labelList: List<String>,
+    labelList: List<ToggleOption>,
     backgroundColor: Color = MaterialTheme.colors.onPrimary,
     indicatorStart: Int = 0,
     indicatorColor: Color = Color.Blue,
@@ -107,14 +107,13 @@ fun ToggleSwitch(
                             .clickable(
                                 onClick = {
                                     indicatorPosition = index
-                                    onClick()
                                 }
                             ),
                         verticalArrangement = Arrangement.Center,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = it,
+                            text = it.title,
                             textAlign = TextAlign.Center,
                             fontSize = localHeightSp * 0.5,
                             fontWeight = if (indicatorPosition == index) {

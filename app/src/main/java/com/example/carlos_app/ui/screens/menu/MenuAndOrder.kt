@@ -57,6 +57,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.example.carlos_app.data.MenuRepository.getMenuCategoriesData
+import com.example.carlos_app.data.OrderOptionsRepository.getOrderOptionsData
 import com.example.carlos_app.providers.Local
 import com.example.carlos_app.ui.components.switches.ToggleSwitch
 import com.example.carlos_app.ui.theme.DarkGray
@@ -79,6 +80,7 @@ fun MenuAndOrderContent(
     val state = viewModel.state.collectAsState()
     val systemBarsPaddingValues = WindowInsets.systemBars.asPaddingValues()
     val menuCategoriesList = getMenuCategoriesData()
+    val orderOptionsList = getOrderOptionsData()
     var size by remember { mutableStateOf(IntSize.Zero)}
     Surface(
         modifier = Modifier
@@ -123,9 +125,8 @@ fun MenuAndOrderContent(
                     ToggleSwitch(
                         modifier = Modifier
                             .width(240.dp),
-                        labelList = listOf(
-                        "Carryout", "Curbside", "Dine-In"
-                    ))
+                        labelList = orderOptionsList
+                    )
                 }
             }
 
